@@ -3,7 +3,7 @@ An interesting web app created with ReactJS, JSX, Axios and Google Map.
 
 Given an email address, the app makes use of the Full Contact API to find all the informations available for that user: Avatar, name, current job, company, location, gender, age range and bio.
 
-It works very well with company email addresses. Try it with yours!
+It works very well especially with company email addresses. Try it with yours!
 
 Moreover, ALL the dependencies are WITHIN the html file, using a simple bunch of URLs.
 
