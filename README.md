@@ -5,7 +5,7 @@ Given an email address, the app makes use of the Full Contact API to find all th
 
 It works very well with company email addresses. Try it with yours!
 
-Moreover, ALL the dependencies are WITHIN the html file, using simply a bunch of URLs.
+Moreover, ALL the dependencies are WITHIN the html file, using a simple bunch of URLs.
 
 ```
 <script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
