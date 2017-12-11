@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Francesco Natali - Software Developer</title>
+        <meta name="description" content="Supercharged Currency Converter">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+        <script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+        <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+
+        <!-- Include the Google Maps API library - required for embedding maps -->
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBbr28aw_5EPm93sKSxSsySHSJexcVUlpY"></script>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+            * {
+                font-family: 'Nunito', sans-serif;
+                box-sizing: border-box;
+                min-width: 0;
+                min-height: 0;
+            }
+
+            #googlemaps { 
+            height: 100%; 
+            width: 100%; 
+            position:absolute; 
+            top: 0; 
+            left: 0; 
+            z-index: 0; /* Set z-index to 0 as it will be on a layer below the contact form */
+            }
+
+            #root { 
+            position: relative; 
+            z-index: 1; /* The z-index should be higher than Google Maps */
+            width: 600px;
+            margin: 60px auto 0;
+            padding: 10px;
+            background: white;
+            height: auto;
+            opacity: .92; /* Set the opacity for a slightly transparent Google Form */ 
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            }
+
+            .labelApp{
+                color: rgb(48, 57, 64); 
+                font-size: 13px; 
+                font-weight: 700; 
+                letter-spacing: 1px; 
+                line-height: 18px;
+                text-align: center;
+                padding-bottom: 30px;
+            }
+            
+            .formApp {
+                text-align: -webkit-center;
+            }
+
+            .inputApp{
+                line-height: 25px; 
+                color: rgb(57, 60, 64); 
+                font-family: 'Nunito', sans-serif;
+                font-size: 18px; 
+                font-weight: 400; 
+                background-color: rgb(255, 255, 255); 
+                width: 450px; 
+                padding: 18px 60px 18px 18px; 
+                outline: none; 
+                display: block; 
+                border: 1px solid rgb(214, 218, 219); 
+                border-radius: 3px 0px 0px 3px; 
+                margin-bottom: 12px;
+                height: 50px;
+            }
+
+            .divSearchApp{
+                display: flex; 
+                margin-top: 30px; 
+                position: relative;
+            }
+
+            ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: lightgray;
+            }
+            ::-moz-placeholder { /* Firefox 19+ */
+                color: lightgray;
+            }
+            :-ms-input-placeholder { /* IE 10+ */
+                color: lightgray;
+            }
+            :-moz-placeholder { /* Firefox 18- */
+                color: lightgray;
+            }
+            
+            #divResponse1 {
+                display: flex;flex-direction: column;padding: 31px 31px 19px;position: relative;
+            }
+            #divResponse2 {
+                display: flex; align-items: center;
+            }
+            #divResponse3 {
+                align-items: center; color: rgb(255, 255, 255); font-size: 30px; width: 110px; flex: 0 0 110px; justify-content: center; display: flex; margin-right: 21px; background-position: 50% center; border-radius: 50%; background-size: cover; height: 110px;
+            }
+            #divResponse4 {
+                display: flex; flex-direction: column;
+            }
+            #divResponse5 {
+                color: rgb(25, 30, 33); font-size: 24px; font-weight: 500; line-height: 33px;
+            }
+            #divResponse6 {
+                color: rgb(93, 103, 109); font-size: 16px; font-weight: 500; line-height: 22px; margin-top: 2px;
+            }
+            #divResponse7 {
+                margin-top: 24px;
+            }
+            #divResponse8 {
+                color: rgb(57, 60, 64); font-size: 15px; font-weight: 500; line-height: 20px; display: flex; align-items: center;
+            }
+            #divResponse9 {
+                color: rgb(57, 60, 64); font-size: 15px; font-weight: 500; line-height: 20px; display: flex; align-items: center; margin-top: 11px;
+            }
+            #iResponse8 {
+                background-image: url(contact-icons-16x16.svg); background-size: 256px 64px; background-position: -32px 0px; height: 16px; width: 16px; margin-right: 8px;
+            }
+            #iResponse9 {
+                background-image: url(contact-icons-16x16.svg); background-size: 256px 64px; background-position: -224px 0px; height: 16px; width: 16px; margin-right: 8px;
+            }
+            #divResponse10 {
+                margin-top: 20px;
+            }
+            #divResponse11 {
+                line-height: 14px; align-items: center; color: rgb(48, 57, 64); font-size: 10px; font-weight: 500; background: rgb(245, 246, 247); padding: 0px 10px; display: flex; letter-spacing: 1px; border-radius: 2px; height: 22px;
+            }
+            #divResponse12 {
+                color: rgb(48, 57, 64); font-size: 14px; line-height: 22px; padding: 10px 0px 0px 10px;
+            }
+
+            #buttonViewCode {
+                line-height: 20px; box-sizing: border-box; align-items: center; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 2px 0px; color: rgb(255, 255, 255); text-align: center; font-size: 13px; top: 31px; font-weight: 400; background-color: rgb(38, 156, 226); width: 92px; padding: 0px; justify-content: center; outline: none; right: 32px; text-decoration: none; display: flex; position: absolute; border: 1px solid rgb(34, 140, 201); border-radius: 2px; font-family: 'Nunito', sans-serif; height: 30px;
+            }
+            
+            #personNotFound {
+                position: relative;
+                margin-left: 150px;
+            }
+
+            .spinner {
+            width: 40px;
+            height: 40px;
+
+            position: relative;
+            margin: 100px auto;
+            }
+
+            .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #333;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+            }
+
+            .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+            }
+
+            @-webkit-keyframes sk-bounce {
+            0%, 100% { -webkit-transform: scale(0.0) }
+            50% { -webkit-transform: scale(1.0) }
+            }
+
+            @keyframes sk-bounce {
+            0%, 100% { 
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            } 50% { 
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+            }
+
+        </style>
+	</head>
+
+    <body>
+
+        <div id="googlemaps"></div>
+
+        <div id="root"></div>
+        
+        <script type="text/babel">
+            class UserCompany extends React.Component {
+              state = {company: undefined, loaded: false}
+              fetchCompany = () => {
+                // to show the loading css animation
+                // at every new search
+                this.state.loaded = false
+                this.setState(this.state);
+                //
+                axios({
+                  url: 'https://api.fullcontact.com/v3/person.enrich',
+                  method: 'post',
+                  data: {
+                    email: `${this.props.username}`,
+                  },
+                  headers: {
+                    Authorization: `Bearer RNkRbBpi37e9ldkWqleyOJpzpwsZMbmP`,
+                  },
+                }).then(
+                  response => {
+                    console.log(response)
+                    const avatar = {
+                        backgroundImage: 'url(' + response.data.avatar + ')',
+                        };
+                    if (response.data.location !== null) {
+                        geocoder = new google.maps.Geocoder();
+                        geocoder.geocode( { 'address': response.data.location}, function(results, status) {
+                        if (status == 'OK') {
+                            map.panTo(results[0].geometry.location);
+                        } else {
+                            console.log('Geocode was not successful for the following reason: ' + status);
+                        }
+                        });
+                    }
+                    this.setState({
+                      loaded: true,
+                      company:
+                        <div id="divResponse1">
+                            <div id="divResponse2">
+                                <div id="divResponse3" style={avatar}></div>
+                                <div id="divResponse4">
+                                    <div id="divResponse5">{response.data.fullName}</div>
+                                    <div id="divResponse6">{response.data.title} at {response.data.organization}</div>
+                                </div>
+                            </div>
+                            <div id="divResponse7">
+                                <div id="divResponse8">
+                                    <i id="iResponse8"></i>{response.data.location}
+                                </div>
+                                <div id="divResponse9">
+                                    <i id="iResponse9"></i>{response.data.gender} / Age {response.data.ageRange}
+                                </div>
+                            </div>
+                            <div id="divResponse10">
+                                <div id="divResponse11">BIO</div>
+                                <div id="divResponse12">{response.data.bio}</div>
+                            </div>
+                        </div>,
+                    })
+                  },
+                  error => {
+                    this.setState({
+                      error,
+                      loaded: true,
+                    })
+                  },
+                )
+              }
+              componentDidMount() {
+                this.fetchCompany()
+              }
+              componentDidUpdate(prevProps) {
+                if (
+                  prevProps.username !== this.props.username
+                ) {
+                  this.state.error = false
+                  this.fetchCompany()
+                }
+              }
+
+              render() {
+                return this.state.loaded
+                  ? this.state.error
+                    ? <img id="personNotFound" src="personnotfound.png" />
+                    : this.state.company || 'Unknown'
+                  : <div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
+              }
+            }
+            
+            class App extends React.Component {
+              state = {username: undefined}
+              handleSubmit = e => {
+                e.preventDefault()
+                this.setState({
+                  username: this.inputNode.value,
+                })
+              }
+              render() {
+                const {username} = this.state
+                return (
+                  <div>
+                        <div className="labelApp"><img src="logo.png" height="100px;"/></div>
+
+                    <form className="formApp" onSubmit={this.handleSubmit}>
+                      <input className="inputApp" placeholder="enter an email address and press <enter>"
+                        ref={node => (this.inputNode = node)}
+                      />
+                    </form>
+                    {username ? (
+                      <UserCompany username={username} />
+                    ) : null}
+                  </div>
+                )
+              }
+            }
+            
+            ReactDOM.render(
+              <App />,
+              document.getElementById('root'),
+            )
+        </script>
+
+        <script type="text/javascript">
+
+            var map;
+            var geocoder;
+
+            // The initial latitude and longitude
+            var position = [50.370851,28.574570];
+            
+            function showGoogleMaps() {
+
+                var latLng = new google.maps.LatLng(position[0], position[1]);
+                // var latLng = new google.maps.LatLng( (Math.random()*(80*2)-85), (Math.random()*(180*2)-80) );
+
+                 var mapOptions = {
+                    zoom: 4, // initialize zoom level - the max value is 21
+                    streetViewControl: false, // hide the yellow Street View pegman
+                    scaleControl: false, // allow users to zoom the Google Map
+                    disableDefaultUI: true,
+                    mapTypeId: 'satellite',
+                    center: latLng
+                }; 
+                
+                map = new google.maps.Map(document.getElementById('googlemaps'),
+                    mapOptions);
+            }
+
+            google.maps.event.addDomListener(window, 'load', showGoogleMaps);
+        </script>
+    </body>
+</html>
