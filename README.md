@@ -14,7 +14,7 @@ Moreover, ALL the dependencies are WITHIN the html file, using a simple bunch of
 <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
 ```
 
-No need for web server, Node, create-react-app, and its zillion dependencies. Download it on your computer and directly open it in your browser and it will work.
+No need for web server, Node, create-react-app, and its zillion dependencies.
 
 :)
 
