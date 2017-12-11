@@ -3,8 +3,8 @@
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Francesco Natali - Software Developer</title>
-        <meta name="description" content="Supercharged Currency Converter">
+        <title>Francesco Natali - I Found You</title>
+        <meta name="description" content="web app created with ReactJS, JSX, Axios and Google Map">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
         <script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
@@ -12,7 +12,7 @@
         <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
         <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
 
-        <!-- Include the Google Maps API library - required for embedding maps -->
+        <!-- Google Maps API library -->
         <script src="http://maps.googleapis.com/maps/api/js?key=[INSERT YOUR GOOGLE MAP API KEY]"></script>
 
         <style>
@@ -163,7 +163,7 @@
             function showGoogleMaps() {
 
                 var latLng = new google.maps.LatLng(position[0], position[1]);
-                // var latLng = new google.maps.LatLng( (Math.random()*(80*2)-85), (Math.random()*(180*2)-80) );
+                // RANDOM LOCATION: var latLng = new google.maps.LatLng( (Math.random()*(80*2)-85), (Math.random()*(180*2)-80) );
 
                  var mapOptions = {
                     zoom: 4, // initialize zoom level - the max value is 21
