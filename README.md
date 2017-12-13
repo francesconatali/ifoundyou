@@ -14,9 +14,7 @@ Moreover, ALL the dependencies are WITHIN the html file, using a simple bunch of
 <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
 ```
 
-No need for Node, create-react-app, and its zillion dependencies.
-
-This approach makes the app completely host-independent, you can simply open the HTML file in your web browser and it will work. You can send the index.htm file by email, or by any other service, and the recipient will have just to open the attachment and the app will work. And, you can upload it to ANY web server, and the app will work straight away.
+No need for web server, Node, create-react-app, and its zillion dependencies. And if you want to publish it on the web, you can use ANY host provider, as no server-side configuration is needed.
 
 (just remember to insert your own GoogleMapApi Key and FullContact API Key)
 
