@@ -14,7 +14,7 @@ Moreover, ALL the dependencies are WITHIN the html file, using a simple bunch of
 <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
 ```
 
-No need for web server, Node, create-react-app, and its zillion dependencies. And if you want to publish it on the web, you can use ANY host provider, as no server-side configuration is needed.
+No need for web server, Node, create-react-app, and its zillion dependencies. And if you want to publish it on the web, you can use ANY hosting provider, as no server-side configuration is needed.
 
 (just remember to insert your own GoogleMapApi Key and FullContact API Key)
 
