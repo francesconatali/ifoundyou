@@ -21,4 +21,4 @@ No need for web server, Node, create-react-app, and its zillion dependencies. An
 :)
 
 ## demo
-See it live at http://www.francesconatali.com/personalprojects/ifoundyou/
+See it live at https://francesconatali.com/personalprojects/ifoundyou/
